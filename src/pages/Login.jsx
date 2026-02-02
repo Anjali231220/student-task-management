@@ -34,6 +34,11 @@ const Login = () => {
             Login
           </button>
     </form>
+
+    {/* Link to Register Page*/}
+    <p className="link-text">
+        Don't have an account? <Link to="/register">Register here</Link>
+    </p>
    </div>
   )
 }
