@@ -1,60 +1,12 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Welcome Task",
-      "description": "this is your task served from json-server",
-      "date": "2025-09-31",
-      "completed": false,
-      "priority": "Meduim"
-    },
-    {
       "id": "2",
       "title": "Welcome Task 2",
-      "description": "this is your task served from json-server",
-      "date": "2025-09-01",
-      "completed": false,
-      "priority": "High"
-    },
-    {
-      "id": "3832",
-      "title": "AnjaliVadukar",
-      "description": "basdhgasvcuawegr3iqu4ry3uiq4tiegjdsgfvbndfgj",
+      "description": "this is updated description",
       "date": "2026-02-26",
-      "priority": "High",
-      "completed": false
-    },
-    {
-      "id": "2f04",
-      "title": "miralik",
-      "description": "advsah chdsgulfygewufweiufgdashgcfhdsbcbzxvc",
-      "date": "2026-02-28",
-      "priority": "Meduim",
-      "completed": false
-    },
-    {
-      "id": "dfb7",
-      "title": "miralik",
-      "description": "advsah chdsgulfygewufweiufgdashgcfhdsbcbzxvc",
-      "date": "2026-02-28",
-      "priority": "Meduim",
-      "completed": false
-    },
-    {
-      "id": "7ff7",
-      "title": "miralik adsad",
-      "description": "advsah chdsgulfygewufweiufgdashgcfhdsbcbzxvsdsadc",
-      "date": "2026-02-02",
-      "priority": "Meduim",
-      "completed": false
-    },
-    {
-      "id": "87f0",
-      "title": "bsdjsbfsdjv",
-      "description": "sandfjskgbfvsdjkbvs;uifzxgb c",
-      "date": "2026-03-13",
-      "priority": "Low",
-      "completed": false
+      "completed": false,
+      "priority": "Meduim"
     }
   ]
 }

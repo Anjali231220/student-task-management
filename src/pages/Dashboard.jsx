@@ -7,20 +7,21 @@ import TaskForm from "../components/TaskForm";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
-
-  const fetchdata = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/tasks");
-      const data = await response.json();
-      setTasks(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [editTask,setEditTask]=useState();
+ 
 
   useEffect(() => {
     fetchdata();
   }, []);
+  const fetchdata=async ()=>{
+    try{
+      const response=await fetch("http://localhost:3000/tasks");
+      const data= await response.json();
+      setTasks(data);
+    }catch(error){
+      console.log(error);
+    }
+  };
   const handleLogout = () => {
     localStorage.removeItem("Data");
     localStorage.removeItem("authData");
@@ -44,12 +45,44 @@ const Dashboard = () => {
     console.log(error)
   }
 }
+const handleUpdateTask = async(updatedTask)=>{
+  try{
+    await fetch(`http://localhost:3000/tasks/${updatedTask.id}`,{
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(updatedTask)
+    });
+    setTasks(
+      tasks.map((task)=>
+        task.id===updatedTask.id?{...updatedTask}:task,
+    ),
+  );
+  }catch(error){
+    console.log(error)
+  }
+}
+const editingTask=(editingTask) =>{
+  console.log(editingTask)
+  setEditTask(editingTask)
+}
+
+const handleDeleteTask = async(id)=>{
+  try{
+    await fetch(`http://localhost:3000/tasks/${id}`,{
+      method: "DELETE"
+    })
+    setTasks(tasks.filter((task) => task.id !==id))
+  }catch(error){
+    console.log(error)
+  }
+}
+
   return (
     <div>
       <Navbar title="Task Management" onLogout={handleLogout} />
-      <TaskForm addTask={handleAdd}/>
+      <TaskForm addTask={handleAdd} editingTask={editTask} updateTask={handleUpdateTask}/>
       <h1>MY TASKS</h1>
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} editingTask={editingTask} deletingTask={handleDeleteTask}/>
       
     </div>
   );

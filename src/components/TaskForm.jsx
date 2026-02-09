@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const TaskForm = ({addTask}) => {
+const TaskForm = ({addTask,updateTask,editingTask}) => {
   const navigate = useNavigate();
   const [TaskData, settaskData] = useState({
     title: "",
@@ -11,6 +11,11 @@ const TaskForm = ({addTask}) => {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(()=>{
+    settaskData(editingTask)
+  },[editingTask])
+  
   const handleInputChange = (e) => {
     settaskData({
       ...TaskData,
@@ -44,8 +49,14 @@ const TaskForm = ({addTask}) => {
     console.log(e)
     e.preventDefault();
     if (validate()) {
+      if(editingTask)
+      {
+        updateTask(TaskData)
+      }
+      else{
          addTask(TaskData);
       alert("Add Task Successfully.......");
+      }
     }
   };
 
@@ -62,7 +73,7 @@ const TaskForm = ({addTask}) => {
               placeholder="Task Title"
               name="title"
               id="title"
-                value={TaskData.title}
+                value={TaskData?.title}
               onChange={handleInputChange}
             />
             {errors.title && <span className="error-msg">{errors.title}</span>}
@@ -76,7 +87,7 @@ const TaskForm = ({addTask}) => {
               rows="3"
               name="description"
               id="description"
-                value={TaskData.description}
+                value={TaskData?.description}
               onChange={handleInputChange}
             />
           </div>
@@ -87,7 +98,7 @@ const TaskForm = ({addTask}) => {
                 type="date"
                 name="date"
                 id="date"
-                value={TaskData.date}
+                value={TaskData?.date}
                 onChange={handleInputChange}
               />
               {errors.date && (
@@ -101,7 +112,7 @@ const TaskForm = ({addTask}) => {
                 onChange={handleInputChange}
                 id="priority"
                 name="priority"
-                value={TaskData.priority}
+                value={TaskData?.priority}
               >
                 <option value="Low">Low Priority</option>
                 <option value="Meduim">Meduim Priority</option>
@@ -116,11 +127,12 @@ const TaskForm = ({addTask}) => {
           >
             <button
               className="btn-primary"
-              type="button"
+              type="submit"
               style={{ flex: 1 }}
               onClick={handleAdd}
             >
-              Add Task
+              {editingTask ? 'Update' : 'Add'}
+               Add Task
             </button>
 
             <button
