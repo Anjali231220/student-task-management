@@ -15,7 +15,7 @@ const TaskForm = ({addTask,updateTask,editingTask}) => {
   useEffect(()=>{
     settaskData(editingTask)
   },[editingTask])
-  
+
   const handleInputChange = (e) => {
     settaskData({
       ...TaskData,
@@ -132,7 +132,7 @@ const TaskForm = ({addTask,updateTask,editingTask}) => {
               onClick={handleAdd}
             >
               {editingTask ? 'Update' : 'Add'}
-               Add Task
+               Task
             </button>
 
             <button
